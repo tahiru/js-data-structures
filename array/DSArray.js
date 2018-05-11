@@ -1,40 +1,39 @@
 
-function DSArray() {
-    this.array = [];
-}
-
-DSArray.prototype.add = function(data) {
-    this.array.push(data);
-}
-
-DSArray.prototype.remove = function(data) {
-    if (this.array.indexOf(data) === -1) {
-        return;
+class DSArray {
+    constructor() {
+        this.array = [];
     }
 
-    this.array = this.array.filter(function(current) {
-        return current !== data
-    });
-}
-
-DSArray.prototype.search = function(data) {
-    let foundIndex = this.array.indexOf(data);
-    if (foundIndex !== -1) {
-        return foundIndex;
+    add(data) {
+        this.array.push(data);
     }
-    return null;
-}
 
-DSArray.prototype.index = function(index) {
-    return this.array[index] || null;
-}
+    remove(data) {
+        if (this.array.indexOf(data) === -1) {
+            return;
+        }
 
-DSArray.prototype.length = function() {
-    return this.array.length;
-}
+        this.array = this.array.filter((current) => {
+            return current !== data;
+        });
+    }
 
-DSArray.prototype.print = function() {
-    return this.array.join(' ');
+    search(data) {
+        let foundIndex = this.array.indexOf(data);
+        return foundIndex === -1 ? null : foundIndex;
+    }
+
+    index(index) {
+        return this.array[index] || null;
+    }
+
+    length() {
+        return this.array.length;
+    }
+
+    print() {
+        return this.array.join(' ');
+    }
 }
 
 module.exports = DSArray;
