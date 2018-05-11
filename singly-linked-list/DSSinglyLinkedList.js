@@ -1,95 +1,94 @@
 
-function Node(data) {
-    this.data = data;
-    this.next = null;
-}
-
-function DSSinglyLinkedList() {
-    this.head = null;
-    this.tail = null;
-    this.numberOfValues = 0;
-}
-
-DSSinglyLinkedList.prototype.add = function(data) {
-    let node = new Node(data);
-
-    if (!this.head) {
-        this.head = node;
-        this.tail = node;
-    } else {
-        this.tail.next = node;
-        this.tail = node;
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
     }
-    this.numberOfValues += 1;
 }
 
-DSSinglyLinkedList.prototype.remove = function(data) {
-    let previous = this.head;
-    let current = this.head;
+class DSSinglyLinkedList {
+    constructor() {
+        this.head = null;
+        this.tail = null;
+        this.numberOfValues = 0;
+    }
 
-    while (current) {
-        if (current.data === data) {
-            if (current === this.head) {
-                this.head = this.head.next;
-            }
-
-            if (current === this.tail) {
-                this.tail = previous;
-            }
-            
-            previous.next = current.next;
-            this.numberOfValues -= 1;
+    add(data) {
+        let node = new Node(data);
+        if (!this.head) {
+            this.head = node;
+            this.tail = node;
         } else {
-            previous = current;
+            this.tail.next = node;
+            this.tail = node;
         }
-        current = current.next;
+        this.numberOfValues++;
     }
-}
 
-DSSinglyLinkedList.prototype.insert = function(data, toNodeData) {
-    let current = this.head;
+    remove(data) {
+        let previous = this.head;
+        let current = this.head;
+        while (current) {
+            if (current.data === data) {
+                if (current === this.head) {
+                    this.head = this.head.next;
+                }
 
-    while (current) {
-        if (current.data === toNodeData) {
-            let node = new Node(data);
+                if (current === this.tail) {
+                    this.tail = previous;
+                }
 
-            if (current === this.tail) {
-                this.tail.next = node;
-                this.tail = node;
+                previous.next = current.next;
+                this.numberOfValues--;
             } else {
-                node.next = current.next;
-                current.next = node;
+                previous = current;
             }
-            this.numberOfValues += 1;
+            current = current.next;
         }
-        current = current.next;
     }
-}
 
-DSSinglyLinkedList.prototype.traverse = function(callback) {
-    let current = this.head;
-
-    while (current) {
-        if (callback) {
-            callback(current);
+    insert(data, toNodeData) {
+        let current = this.head;
+        while (current) {
+            if (current.data === toNodeData) {
+                let node = new Node(data);
+                if (current === this.tail) {
+                    this.tail.next = node;
+                    this.tail = node;
+                } else {
+                    node.next = current.next;
+                    current.next = node;
+                }
+                this.numberOfValues++;
+            }
+            current = current.next;
         }
-        current = current.next;
     }
-}
 
-DSSinglyLinkedList.prototype.length = function() {
-    return this.numberOfValues;
-}
-
-DSSinglyLinkedList.prototype.print = function() {
-    let string = '';
-    let current = this.head;
-
-    while (current) {
-        string += `${current.data} `;
-        current = current.next;
+    traverse(callback) {
+        let current = this.head;
+        while (current) {
+            if (callback) {
+                callback(current);
+            }
+            current = current.next;
+        }
     }
-    return string.trim();
+
+    length() {
+        return this.numberOfValues;
+    }
+
+    print() {
+        let string = '';
+        let current = this.head;
+
+        while (current) {
+            string += `${current.data} `;
+            current = current.next;
+        }
+        return string.trim();
+    }
 }
 
 module.exports = DSSinglyLinkedList;
