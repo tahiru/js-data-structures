@@ -1,26 +1,28 @@
 
-function DSStack() {
-    this.stack = [];   
-}
+class DSStack {
+    constructor() {
+        this.stack = [];
+    }
 
-DSStack.prototype.push = function(value) {
-    this.stack.push(value);
-}
+    push(data) {
+        this.stack.push(data);
+    }
 
-DSStack.prototype.pop = function() {
-    return this.stack.pop();
-}
+    pop() {
+        return this.stack.pop();
+    }
 
-DSStack.prototype.peek = function() {
-    return this.stack[this.stack.length - 1];
-}
+    peek() {
+        return this.stack[this.stack.length - 1];
+    }
 
-DSStack.prototype.length = function() {
-    return this.stack.length;
-}
+    length() {
+        return this.stack.length;
+    }
 
-DSStack.prototype.print = function() {
-    return this.stack.join(' ').trim();
+    print() {
+        return this.stack.join(' ').trim();
+    }
 }
 
 module.exports = DSStack;
