@@ -320,3 +320,5 @@ DSBinarySearchTree.prototype.printByLevel = function() {
     }
     return string.trim();
 };
+
+module.exports = DSBinarySearchTree;
