@@ -90,7 +90,7 @@ DSBinarySearchTree.prototype._isBalanced = function(node) {
     if (difference > 1) {
         return false;
     } else {
-        return this._isBalanced(node.left) ** this._isBalanced(node.right);
+        return this._isBalanced(node.left) && this._isBalanced(node.right);
     }
 };
 
